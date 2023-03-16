@@ -1,24 +1,20 @@
 #include<iostream>
 #include<vector>
+#include<numeric>
 using namespace std;
 int main() {
+     int sum = 0;
+     vector<int> v;
      int n;
      cin >> n;
-     vector<int> arr(n, -1);
-
-     // cout << arr.size();
-     // // int ans = (sizeof(arr) / sizeof(int));
-     // cout << ans << endl;
-
-     // arr.push_back(5);
-     // arr.push_back(6);
-     for (int i = 0;i < arr.size();i++) {
-          cout << arr[i] << endl;
+     for (int i = 0;i < n;i++) {
+          int x;
+          cin >> x;
+          v.push_back(x);
      }
-     // // }
-     // arr.pop_back();
-     // for (int i = 0;i < arr.size();i++) {
-     //      cout << arr[i] << endl;
-     // }
-     cout << arr.empty();
+     for (int i = 0;i < n;i++) {
+          sum = sum + v[i];
+     }
+     int avg = sum / n;
+     cout << sum;
 }
