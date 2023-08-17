@@ -34,9 +34,56 @@ Node* buildTree(){
 
   return root;
 }
+
+void levelOrderTraversal(Node* root){
+  queue<Node*>q;
+  //initially push root node;
+  q.push(root);
+  q.push(NULL);
+
+  while(!q.empty()){
+    // A temp=q.front();
+    Node * temp=q.front();
+    //B pop
+    q.pop();
+    if(temp==NULL){
+      cout<<endl;
+      if(!q.empty()){
+        q.push(NULL);
+      }
+    }
+    else{
+      //C
+    cout<<temp->data<<" ";
+    //D
+    if(temp->left){
+      q.push(temp->left);
+    }
+    if(temp->right){
+      q.push(temp->right);
+    }
+
+    }
+
+    
+  }
+  
+}
+int height(Node* root){
+    if(root==NULL){
+      return 0;
+
+    }
+    int leftHeight=height(root->left);
+    int rightHeight=height(root->right);
+    int ans=max(leftHeight,rightHeight)+1;
+    return ans;
+  }
 int main() {
   Node* root = NULL;
   root=buildTree();
-  
+  levelOrderTraversal(root);
+  cout<<endl;
+  cout<<"height: "<<height(root)<<' ';
   return 0;
 }
