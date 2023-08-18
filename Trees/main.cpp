@@ -70,6 +70,7 @@ void levelOrderTraversal(Node* root){
   
 }
 int height(Node* root){
+
     if(root==NULL){
       return 0;
 
@@ -79,11 +80,40 @@ int height(Node* root){
     int ans=max(leftHeight,rightHeight)+1;
     return ans;
   }
+
+bool kthAncestor(Node* root,int &k, int p){
+  //base case
+  if(root==NULL){
+    return false;
+
+  }
+  if(root->data==p){
+    return true;
+  }
+  bool left=kthAncestor(root->left,k,p);
+  bool right=kthAncestor(root->right,k,p);
+
+  //wapas are honge 
+
+  //check left ya riht me ans hai ya nhi 
+  if( left || right){
+    k--;
+  }
+  if(k==0){
+    cout<< "Answer : "<<root->data<<endl;
+    k=-1;
+  }
+  return left||right;
+}
 int main() {
   Node* root = NULL;
   root=buildTree();
-  levelOrderTraversal(root);
-  cout<<endl;
-  cout<<"height: "<<height(root)<<' ';
+  // levelOrderTraversal(root);
+  // cout<<endl;
+  // cout<<"height: "<<height(root)<<' ';
+
+  int k=1;
+  int p=4;
+  bool found=kthAncestor(root,k,p);
   return 0;
 }
